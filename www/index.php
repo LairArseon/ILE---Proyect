@@ -6,22 +6,9 @@ $estructura = new Structure;
 
 $estructura->head('ILE - Bienvenida', ['./css/styles.css']);
 
-?>
+$estructura->paint_header();
 
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img src="../assets/img/ILE.png" width="190" height="120" class="img-fluid text-center" alt="ILE - Logo">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                <a class="nav-item nav-link active h3" href="#">Inicio</a>
-                <a class="nav-item nav-link h3" href="#">Informacion</a>
-                <a class="nav-item nav-link h3" href="#">Tarifas</a>
-                </div>
-            </div>
-        </nav>
+?>
         <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
@@ -65,18 +52,18 @@ $estructura->head('ILE - Bienvenida', ['./css/styles.css']);
                 </div>
             </div>
         </section>
-        <!-- Call to Action-->
+        <!-- Contacto -->
         <section class="call-to-action text-white text-center" id="signup">
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
                         <h2 class="mb-4">Déjanos tu correo y nos pondremos en contacto contigo</h2>
                         <!-- Signup form-->
-                        <form class="form-subscribe" id="contactFormFooter" method="POST" action="contact_petition.php">
+                        <form class="form-subscribe" id="contactFormFooter" method="POST" action="./contact_petition.php">
                             <!-- Email address input-->
                             <div class="row">
                                 <div class="col">
-                                    <input class="form-control form-control-lg" id="emailAddressBelow" type="email" placeholder="Email Address" data-sb-validations="required,email" />
+                                    <input class="form-control form-control-lg" id="emailAddressBelow" name="email" type="email" placeholder="Email Address" data-sb-validations="required,email" />
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:required">Email Address is required.</div>
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:email">Email Address Email is not valid.</div>
                                 </div>
