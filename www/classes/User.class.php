@@ -3,11 +3,13 @@
 
 class User {
 
+    protected $id;
     protected $name;
     protected $role;
 
-    public function __construct($name = '', $role = '')
+    public function __construct($id = NULL, $name = '', $role = '')
     {
+        $this->setId($id);
         $this->setName($name);
         $this->setRole($role);
     }
@@ -32,6 +34,16 @@ class User {
         return $this->role;
     }
 
+    public function getId ()
+    {
+        return $this->id;
+    }
+
+    private function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function tryLogin ($mail, $pw)
     {
         $connection = new ConnectorSQL();
@@ -45,6 +57,7 @@ class User {
             
             $this->setName($data['user_name']);
             $this->setRole($data['user_role']);
+            $this->setId($data['user_id']);
 
             return(true);
 
@@ -66,6 +79,8 @@ class User {
             if ($campo != 'user_id'){
                 $query = "UPDATE tUser SET $campo = '$valor' where user_id = '{$datos['user_id']}'";
                 $result = mysqli_query($conn, $query);  
+                if (!$result) 
+                    return false;
             }
         }   
     }
@@ -115,15 +130,17 @@ class User {
                                 <div class="col-md-12 mt-3"><label class="labels">Detalles</label>
                                 <input type="text" class="form-control" name='detalles' placeholder="details" value="<?= $data['user_details'] ?>"></div>
                             </div>
+
                             <div class="row mt-3">
                                 <div class="col-md-6"><label class="labels">Contraseña</label>
                                 <input type="password" class="form-control" name='password' placeholder="contraseña" value="<?= $data['user_pw'] ?>"></div>
+                                
                                 <div class="col-md-6"><label class="labels">Rol</label>
-                                    <select class="form-control" name='rol' value="<?= $data['user_role'] ?>">
-                                    <option value="dev">Desarrollador</option>
-                                    <option value="admin">Administrador</option>
-                                    <option value="student">Estudiante</option>
-                                    <option value="teacher">Profesor</option>
+                                    <select class="form-control" name='rol' value="<?= $data['user_role'] ?>" <?= $_SESSION['role'] == 'student' ? 'disabled' : '' ?>>
+                                    <option value="dev" <?= $_SESSION['role'] == 'dev' ? 'selected' : '' ?>>Desarrollador</option>
+                                    <option value="admin" <?= $_SESSION['role'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
+                                    <option value="student" <?= $_SESSION['role'] == 'student' ? 'selected' : '' ?>>Estudiante</option>
+                                    <option value="teacher" <?= $_SESSION['role'] == 'teacher' ? 'selected' : '' ?>>Profesor</option>
                                     </select>
                                 </div>
                             

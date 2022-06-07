@@ -2,6 +2,8 @@
 
 session_start();
 
+if (isset($_SESSION['login']) && $_SESSION['login']){
+
 include 'includes/autoloader.inc.php';
 
 $estructura = new Structure;
@@ -31,3 +33,6 @@ $estructura->profile_card();
 $estructura->paint_footer();
 
 $estructura->close_plus_js(['./js/scripts.js']);
+
+}
+else header('location: ./');

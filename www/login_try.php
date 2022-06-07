@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         {
             $_SESSION['user'] = $user->getName();
             $_SESSION['role'] = $user->getRole();
+            $_SESSION['id'] = $user->getId();
             $_SESSION['mail'] = $mail;
             $_SESSION['login'] = true;
 

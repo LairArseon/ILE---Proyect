@@ -61,10 +61,10 @@ class Structure {
 
     }
 
-    public function paint_crud ($name = '', $table = '', $columns = [])
+    public function paint_crud ($name = '', $table = '')
     {
 
-        $crud = new Crud($name, $table, $columns);
+        $crud = new Crud($name, $table);
         $crud->pintar();
 
     }
