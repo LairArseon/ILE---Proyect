@@ -8,7 +8,7 @@ class ConnectorSQL
 
     public function __construct() {
         $this->connection = mysqli_connect('db', 'root', 'root', 'ILE_DB');
-        $this->publicConnection = mysqli_connect('db', 'foreigner', 'test', 'ILE_DB');
+        // $this->publicConnection = mysqli_connect('db', 'foreigner', 'test', 'ILE_DB');
     }
 
     public function getCon () {

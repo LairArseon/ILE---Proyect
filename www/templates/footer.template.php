@@ -1,4 +1,4 @@
-<footer class="footer bg-light mt-auto">
+<footer class="footer bg-light mt-auto pt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">

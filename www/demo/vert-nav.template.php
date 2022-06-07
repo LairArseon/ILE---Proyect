@@ -13,8 +13,8 @@
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item">
       <a href="#" class="nav-link text-dark font-italic bg-light">
-                <i class="bi bi-house h2"></i> 
-                <span class="h3">Home</span> 
+                <i class="bi bi-person-circle h2"></i> 
+                <span class="h3">Perfil</span> 
             </a>
     </li>
     <li class="nav-item">
@@ -24,7 +24,7 @@
 
             </a>
     </li>
-    <!-- <li class="nav-item">
+    <li class="nav-item">
       <a href="#" class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 <span class="h2">Home</span> 
@@ -37,7 +37,7 @@
                 <span class="h2">Home</span> 
 
             </a>
-    </li> -->
+    </li>
   </ul>
 </div>
 

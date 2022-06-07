@@ -5,7 +5,8 @@ include "includes/autoloader.inc.php";
 if (isset($_POST['email']) && !empty(($_POST['email'])))
 {
     $db = new ConnectorSQL;
-    $pubCon = $db->getPubCon();
+    // $pubCon = $db->getPubCon();
+    $pubCon = $db->getCon();
 
     // prepare and bind
     $stmt = $pubCon->prepare("INSERT INTO tNotif (notif_type, notif_content) VALUES (?, ?)");

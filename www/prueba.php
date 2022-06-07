@@ -4,7 +4,8 @@ include 'includes/autoloader.inc.php';
 
 
 $db = new ConnectorSQL;
-$conn = $db->getPubCon();
+// $conn = $db->getPubCon();
+$conn = $db->getCon();
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

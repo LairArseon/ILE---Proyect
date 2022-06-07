@@ -81,8 +81,8 @@ CREATE TABLE IF NOT EXISTS `tNotif` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE USER 'foreigner'@'ile-proyect-www-1.ile-proyect_default' IDENTIFIED BY 'test';
-GRANT INSERT ON `ILE_DB`.`tNotif` TO 'foreigner'@'ile-proyect-www-1.ile-proyect_default';
+CREATE USER 'foreigner'@'ile---proyect-www-1.ile---proyect_default' IDENTIFIED BY 'test';
+GRANT INSERT ON `ILE_DB`.`tNotif` TO 'foreigner'@'ile---proyect-www-1.ile---proyect_default';
 
 
 

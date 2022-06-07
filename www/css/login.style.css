@@ -1,0 +1,17 @@
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(2rem);
+    }
+  }
+  
+  .login-container {  
+    /* This section calls the slideInFromLeft animation we defined above */
+    animation: 1s ease-in-out 0s 1 slideInFromTop;
+    transform: translateY(2rem);
+    
+    background: rgb(103, 103, 103);
+    padding: 30px;
+  }

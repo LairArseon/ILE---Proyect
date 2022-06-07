@@ -33,14 +33,21 @@ class Structure {
         <?php
     }
 
-    public function paint_header()
+    public function paint_header_nl()
     {
         include_once './templates/ext-nav.template.php';
     }
 
-    public function paint_sidebar ()
+    public function paint_header_l()
     {
-        include_once './templates/vert-nav.template.php';
+        include_once './templates/ext-nav-logged.template.php';
+    }
+
+    public function paint_sidebar ($rol)
+    {
+        $sidebar = new Sidebar($rol);
+
+        $sidebar->display();
     }
 
     public function paint_crud ($name, $table = '', $columns = [])
@@ -54,6 +61,12 @@ class Structure {
     public function paint_footer ()
     {
         include_once './templates/footer.template.php';
+    }
+
+    public function paint_task ($tipo, $contenido, $preguntas)
+    {
+        $tarea = new Task($tipo, $contenido, $preguntas);
+        $tarea->display();
     }
 
     public function close_plus_js ($scripts = []) 
