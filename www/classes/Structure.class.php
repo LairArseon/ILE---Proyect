@@ -50,6 +50,17 @@ class Structure {
         $sidebar->display();
     }
 
+    public function profile_card ()
+    {
+        $name = $_SESSION['user'];
+        $role = $_SESSION['role'];
+        $mail = $_SESSION['mail'];
+        $user = new User($name, $role);
+
+        $user->display_profile($mail);
+
+    }
+
     public function paint_crud ($name = '', $table = '', $columns = [])
     {
 
@@ -86,7 +97,5 @@ class Structure {
 
         <?php
     }
-
-
 
 }
