@@ -19,7 +19,10 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link h3" href="../profile.php" data-bs-target="#" data-bs-toggle="modal">Bienvenido <?= $_SESSION['user']?></a>
+                    <a class="nav-link h3" href="../profile.php">Bienvenido <?= $_SESSION['user']?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link h5 text-danger" href="../logout.php">Cerrar Session</a>
                 </li>
             </ul>
         </div>

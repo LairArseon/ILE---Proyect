@@ -21,19 +21,19 @@ class Sidebar {
 
         switch ($rol) {
             case 'dev':
-                $this->setCampos(['Tareas', 'Perfil', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos', 'Profesores']);
+                $this->setCampos(['Perfil', 'Tareas', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos', 'Profesores']);
 
                 break;
             case 'teacher':
-                $this->setCampos(['Tareas', 'Perfil', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos']);
+                $this->setCampos(['Perfil', 'Tareas', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos']);
 
                 break;
             case 'admin':
-                $this->setCampos(['Tareas', 'Perfil', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos', 'Profesores']);
+                $this->setCampos(['Perfil', 'Tareas', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos', 'Profesores']);
 
                 break;
             default:
-                $this->setCampos(['Tareas', 'Perfil', 'Grupos']);
+                $this->setCampos(['Perfil', 'Tareas', 'Grupos']);
 
                 break;
         }
@@ -57,7 +57,13 @@ class Sidebar {
 
             <div class="vertical-nav bg-white" id="sidebar">
             <div class="py-4 px-3 mb-4 bg-light">
-                <div class="media d-flex align-items-center"><img src="../assets/img/ILE - Small.png" alt="logo" width="120" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                <div class="media d-flex align-items-center">
+                    <img 
+                        src="../assets/img/ILE - Small.png" 
+                        alt="logo" 
+                        width="120" 
+                        class="mr-3 rounded-circle img-thumbnail shadow-sm home-ico"
+                        onclick="window.location.assign('index.php')">
                 <div class="media-body">
                     <h2 class="m-0">ILE</h2>
                     <p class="font-weight-light text-muted mb-0">Mi Area</p>
@@ -69,11 +75,14 @@ class Sidebar {
 
             foreach ($this->campos as $ncampo)
             {
+                $ref = "display_crud.php?header=$ncampo";
+                if ($ncampo == 'Perfil')
+                    $ref = "profile.php";
 
                 ?>
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                    <a href="#" class="nav-link text-dark font-italic bg-light">
+                    <a href=<?=$ref?> class="nav-link text-dark font-italic bg-light">
                                 <span class="h2"><?= $ncampo ?></span> 
                             </a>
                     </li>
@@ -83,7 +92,11 @@ class Sidebar {
             }
 
             ?>
-
+                    <li class="nav-item mt-auto">
+                    <a href="../logout.php" class="nav-link text-dark font-italic ">
+                                <span class="text-danger h2">Cerrar Sesión</span> 
+                            </a>
+                    </li>
                 </ul>
                 </div>
 

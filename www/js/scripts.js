@@ -1,6 +1,4 @@
 
-console.log('presente');
-
 $( document ).ready(function() {
     console.log( "ready!" );
 });

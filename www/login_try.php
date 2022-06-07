@@ -24,5 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('location: index.php');
            
     }
+    else
+        header('location: index.php');
+
 
 }
+else
+    header('location: index.php');

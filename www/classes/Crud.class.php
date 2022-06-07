@@ -2,6 +2,7 @@
 
 class Crud {
 
+    protected const TABLAS = [];
     protected $name;
     protected $table;
     protected $columns;
@@ -27,6 +28,9 @@ class Crud {
 
     public function pintar ()
     {
+        if (empty($this->table))
+            return false;
+
         $db = new ConnectorSQL;
         $conn = $db->getCon();
 

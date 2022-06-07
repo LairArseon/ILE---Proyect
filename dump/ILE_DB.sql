@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `tNotif` (
 
 CREATE USER 'foreigner'@'ile---proyect-www-1.ile---proyect_default' IDENTIFIED BY 'test';
 GRANT INSERT ON `ILE_DB`.`tNotif` TO 'foreigner'@'ile---proyect-www-1.ile---proyect_default';
-
+ALTER USER 'foreigner'@'ile---proyect-www-1.ile---proyect_default';
 
 
 -- Test Data

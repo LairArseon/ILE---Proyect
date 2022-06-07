@@ -1,16 +1,20 @@
 <?php
 session_start();
 
-include 'includes/autoloader.inc.php';
+if (isset($_SESSION['login']) && $_SESSION['login']){
 
-$estructura = new Structure;
+    include 'includes/autoloader.inc.php';
 
-$estructura->head('Usuarios', ['./css/crud.style.css', './css/side.style.css']);
+    $estructura = new Structure;
 
-$estructura->paint_sidebar('student');
+    $estructura->head('Usuarios', ['./css/crud.style.css', './css/side.style.css']);
 
-$estructura->paint_crud('Notificaciones', 'tNotif', ['notif_id', 'notif_type', 'notif_content']);
+    $estructura->paint_sidebar($_SESSION['role']);
 
-$estructura->paint_footer();
+    $estructura->paint_crud();
 
-$estructura->close_plus_js(['./js/scripts.js']);
+    $estructura->paint_footer();
+
+    $estructura->close_plus_js(['./js/scripts.js']);
+}
+else header('location: index.php');

@@ -43,3 +43,6 @@
     }
   }
   
+  .home-ico:hover {
+    cursor: pointer;
+  }

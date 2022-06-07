@@ -50,7 +50,7 @@ class Structure {
         $sidebar->display();
     }
 
-    public function paint_crud ($name, $table = '', $columns = [])
+    public function paint_crud ($name = '', $table = '', $columns = [])
     {
 
         $crud = new Crud($name, $table, $columns);
