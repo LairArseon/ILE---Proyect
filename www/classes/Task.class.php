@@ -23,7 +23,7 @@ class Task {
 
         if ($data = $result->fetch_array(MYSQLI_ASSOC))  
         {
-            $this->setId($data['task_content']);
+            $this->setResId($data['task_content']);
             $this->setQuestions($data['task_questions']);
         }
             
@@ -38,7 +38,7 @@ class Task {
         }
     }
 
-    private function setId ($id) {
+    private function setResId ($id) {
         $this->resid = $id;
     }
 
@@ -51,7 +51,7 @@ class Task {
     }
 
     public function setQuestions ($questions) {
-        
+
         $questionClean = json_decode($questions);
 
         foreach ($questionClean as $question)
@@ -60,7 +60,7 @@ class Task {
     
     public function registerTask ($name, $duedate) {
 
-        
+        //Do something
 
     }
 

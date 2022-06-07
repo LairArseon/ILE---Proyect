@@ -19,7 +19,4 @@ class ConnectorSQL
         return $this->publicConnection;
     }
 
-    public function publicSubmission () {
-        
-    }
 }
