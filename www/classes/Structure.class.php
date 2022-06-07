@@ -74,9 +74,9 @@ class Structure {
         include_once './templates/footer.template.php';
     }
 
-    public function paint_task ($tipo, $contenido, $preguntas)
+    public function paint_task ($id)
     {
-        $tarea = new Task($tipo, $contenido, $preguntas);
+        $tarea = new Task($id);
         $tarea->display();
     }
 

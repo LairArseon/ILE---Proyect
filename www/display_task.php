@@ -4,13 +4,18 @@ session_start();
 
 include 'includes/autoloader.inc.php';
 
-$estructura = new Structure;
+if (isset($_SESSION['login']) && $_SESSION['login'] && isset($_GET['id']) && $_GET['id']) {
 
-$estructura->head('Tarea');
+    $estructura = new Structure;
 
-$estructura->paint_task('video', 'https://www.youtube.com/embed/Ijz1mXQm7KU', ['Pregunta 1', 'Pregunta 2']);
+    $estructura->head('Tarea');
 
-$estructura->paint_footer();
+    $estructura->paint_task($_GET['id']);
 
-$estructura->close_plus_js(['./js/tasks.js']);
+    $estructura->paint_footer();
 
+    $estructura->close_plus_js(['./js/tasks.js']);
+
+}
+else
+    header('location: index.php');

@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `tTask` (
   `task_name`               varchar(25) NOT NULL,
   `task_release_date`       datetime NOT NULL,
   `task_due_date`           datetime NOT NULL,
-  `task_content`            text NOT NULL,
+  `task_content`            int NOT NULL,
   `task_questions`          text NOT NULL,
   PRIMARY KEY (`task_id`)
 
@@ -96,3 +96,19 @@ VALUES
 (NULL, 'Teacher1', 'prof', 'prof@prof.com', '2222', 'C/Alli', '33600', '987654321', 'Profesor Prueba', 'teacher'),
 (NULL, 'Student1', 'stud', 'stu@stu.com', '4444', 'C/Bajolpuente', '33600', '258963258', 'Estudiante Prueba', 'student'),
 (NULL, 'Student2', 'stud', 'stu2@stu2.com', '5555', 'C/Sobrelpuente', '33600', '452168975', 'Estudiante Prueba 2', 'student');
+
+INSERT INTO `tGroup` 
+(`group_entry_id`, `group_id`, `group_subject_id`, `group_handle`, `group_member`) 
+VALUES 
+(NULL, '1', '1', '3', '4'), 
+(NULL, '1', '1', '3', '5');
+
+INSERT INTO `tResource` 
+(`resource_id`, `resource_type`, `resource_url`, `resource_details`) 
+VALUES 
+(NULL, 'video', 'https://www.youtube.com/embed/1IyU3VXDAIk', 'Video de Cancion');
+
+INSERT INTO `tTask` 
+(`task_id`, `task_group_id`, `task_name`, `task_release_date`, `task_due_date`, `task_content`, `task_questions`) 
+(NULL, '1', 'Probar', '2022-06-07 18:38:03', '2022-06-23 20:38:04', '1', '[\"Eso\", \"Aquello\"]'),
+(NULL, '2', 'Probar Again', '2022-06-07 18:38:03', '2022-06-23 20:38:04', '1', '[\"Eso\", \"Aquello\"]');

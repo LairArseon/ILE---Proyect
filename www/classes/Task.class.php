@@ -11,12 +11,35 @@ class Task {
     private $tipo = '';
     private $contenido = '';
     private $preguntas = [];
+    private $resid;
 
-    public function __construct($tipo, $contenido, $preguntas)
+    public function __construct($id)
     {
-        $this->setContent($contenido);
-        $this->setType($tipo);
-        $this->setQuestions($preguntas);
+        $connection = new ConnectorSQL();
+        $conn = $connection->getCon();
+
+        $query = "SELECT task_content, task_questions from tTask where task_id = '$id'";
+        $result = mysqli_query($conn, $query);
+
+        if ($data = $result->fetch_array(MYSQLI_ASSOC))  
+        {
+            $this->setId($data['task_content']);
+            $this->setQuestions($data['task_questions']);
+        }
+            
+
+        $query = "SELECT * from tResource where resource_id = '$this->resid'";
+        $result = mysqli_query($conn, $query);
+
+        if ($data = $result->fetch_array(MYSQLI_ASSOC))  
+        {
+            $this->setContent($data['resource_url']);
+            $this->setType($data['resource_type']);
+        }
+    }
+
+    private function setId ($id) {
+        $this->resid = $id;
     }
 
     public function setType ($tipo) {
@@ -28,7 +51,10 @@ class Task {
     }
 
     public function setQuestions ($questions) {
-        foreach ($questions as $question)
+        
+        $questionClean = json_decode($questions);
+
+        foreach ($questionClean as $question)
             $this->preguntas[] = $question;
     }
     

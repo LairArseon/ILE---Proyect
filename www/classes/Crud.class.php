@@ -27,7 +27,8 @@ class Crud {
         'tResource' => [
             'resource_id' => 'Id',
             'resource_type' => 'Tipo',
-            'resource_url' => 'URL'
+            'resource_url' => 'URL',
+            'resource_details' => 'Detalles'
         ],
         'tNotif' => [
             'notif_id' => 'Id',
@@ -49,6 +50,15 @@ class Crud {
     ];
     private const NOMTABLAS = ['tUser', 'tTask', 'tSubject', 'tResource', 'tNotif', 'tHandover', 'tGroup'];
     private const NOMTABLASCLEAN = ['Usuarios', 'Tareas', 'Asignaturas', 'Recursos', 'Notificaciones', 'Entregas', 'Grupos'];
+    private const TABLAS_ID = [
+        'tUser' => 'user_id',
+        'tTask' => 'task_id', 
+        'tSubject' => 'subject_id',
+        'tResource' => 'resource_id',
+        'tNotif' => 'notif_id',
+        'tHandover' => 'handover_id',
+        'tGroup' => 'group_id'
+    ];
     protected $name;
     protected $table;
     protected $columnsClean;
@@ -159,7 +169,7 @@ class Crud {
                                             
                                             ?>
                                                 <td class="text-center">
-                                                    <a href="#" class="settings centerico text-center" title="Settings" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
+                                                    <a href="display_task.php?id=<?= $value[self::TABLAS_ID[$this->table]] ?>" class="settings centerico text-center" title="Settings" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="#" class="delete centerico text-center" title="Delete" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
