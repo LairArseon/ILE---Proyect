@@ -110,5 +110,6 @@ VALUES
 
 INSERT INTO `tTask` 
 (`task_id`, `task_group_id`, `task_name`, `task_release_date`, `task_due_date`, `task_content`, `task_questions`) 
+VALUES
 (NULL, '1', 'Probar', '2022-06-07 18:38:03', '2022-06-23 20:38:04', '1', '[\"Eso\", \"Aquello\"]'),
 (NULL, '2', 'Probar Again', '2022-06-07 18:38:03', '2022-06-23 20:38:04', '1', '[\"Eso\", \"Aquello\"]');
