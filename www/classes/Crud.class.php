@@ -39,7 +39,8 @@ class Crud {
             'handover_id' => 'Id',
             'handover_author_id' => 'Id Autor',
             'handover_task_id' => 'Id Tarea',
-            'handover_date' => 'Fecha Entrega'
+            'handover_date' => 'Fecha Entrega',
+            'handover_mark' => 'Nota Tarea'
         ],
         'tGroup' => [
             'group_id' => 'Id Grupo',
@@ -213,6 +214,12 @@ class Crud {
                                                             case 'tUser':
                                                                 ?>
                                                                 <a href="edit_profile.php?id=<?= $value[self::TABLAS_ID[$this->table]] ?>" class="settings centerico text-center" title="Settings" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
+                                                                <?php
+                                                                break;
+
+                                                            case 'tHandover':
+                                                                ?>
+                                                                <a href="mark_task.php?id=<?= $value[self::TABLAS_ID[$this->table]] ?>" class="settings centerico text-center" title="Settings" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
                                                                 <?php
                                                                 break;
                                                             

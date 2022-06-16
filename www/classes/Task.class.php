@@ -98,6 +98,17 @@ class Task {
 
     }
 
+    public static function updateHandover ($id, $nota) {
+
+        $connection = new ConnectorSQL();
+        $conn = $connection->getCon();
+
+        $query = "UPDATE tHandover SET handover_mark = '$nota' where handover_id = $id";
+        if ($result = mysqli_query($conn, $query))
+            return true;
+        else 
+            return false;
+    }
 
     public static function creationForm () {
 
@@ -170,7 +181,80 @@ class Task {
 
     }
 
-    
+    public static function supervisorForm ($id) {
+
+        $connection = new ConnectorSQL();
+        $conn = $connection->getCon();
+
+        $query = "SELECT * from tHandover where handover_id = '$id'";
+        $result = mysqli_query($conn, $query);
+
+        $entrega = $result->fetch_array(MYSQLI_ASSOC); 
+
+        $query = "SELECT task_name from tTask where task_id = $entrega[handover_task_id]";
+        $result = mysqli_query($conn, $query);
+
+        $nomTarea = $result->fetch_array(MYSQLI_ASSOC);
+
+        $query = "SELECT user_name from tUser where user_id = $entrega[handover_author_id]";
+        $result = mysqli_query($conn, $query);
+
+        $nomUser = $result->fetch_array(MYSQLI_ASSOC);
+
+        ?>
+
+        <!-- Section: Design Block -->
+        <section class="container-sm text-center text-lg-start login-container">
+        <form action="handin_handover.php" method="POST">
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8 mt-4">
+
+                    <h2>Soluciones</h2>
+                    <div class="row d-flex justify-content-center">
+                        <div class="input-group mb-3 col-md-4">
+                            <input type="hidden" class="form-control" id="id" name="id" value="<?=$_GET['id']?>">
+                            <span class="input-group-text" id="addonTarea" style="background-color:#a8c5e3;">Nombre de la Tarea</span>
+                            <input type="text" class="form-control" aria-label="Tarea" aria-describedby="addonTarea" value="<?=$nomTarea['task_name']?>" disabled>
+                            <span class="input-group-text" id="addonAlumno"  style="background-color:#a8c5e3;">Autor</span>
+                            <input type="text" class="form-control" aria-label="Tarea" aria-describedby="addonAlumno" value="<?=$nomUser['user_name']?>" disabled>
+                        </div>
+                    </div>
+                    <h2>Solución</h2>
+                    <?php
+
+                    $preres = explode('/', $entrega['handover_content']);
+                    foreach ($preres as $conjunto)
+                        $preresdeco[] = json_decode($conjunto);
+                    
+                    $nPreguntas = count($preresdeco[0]);
+                    for ($i=0; $i < $nPreguntas; $i++) { 
+
+                        ?>
+
+                        <div class="col-md form-group text-left mb-4">
+                            <label for="pregunta-<?=$iter?>" class="mb-2">-- <?= $preresdeco[0][$i]; ?></label>
+                            <input type="text" class="form-control" value="<?=$preresdeco[1][$i]?>">
+                            <input type="checkbox" class="form-check-input h4" name="valor<?=$i?>">
+
+                        </div>
+
+                        <?php              
+                    }
+                    ?>
+                    <input type="hidden" class="form-control" value="<?=$nPreguntas?>" name="nPreguntas">
+                    <button type="submit" class="btn btn-primary col-md-3 add"><i class="bi bi-file-check"></i>  Añadir Corrección</button>
+
+
+                </div>
+            </div>
+        </form>
+        </section>
+        <!-- Section: Design Block -->
+
+        <?php
+         
+    }
 
     public function display (){
 

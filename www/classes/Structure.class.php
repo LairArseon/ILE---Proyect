@@ -54,6 +54,10 @@ class Structure {
         Task::creationForm();
     }
 
+    public function paint_task_supervisor ($id) {
+        Task::supervisorForm($id);
+    }
+
     public function profile_card ($id = '')
     {
         $name = $_SESSION['user'];

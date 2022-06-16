@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header( "refresh:1;url=display_crud.php?header=Tareas" );
 
-            $estructura->head('Logout');
+            $estructura->head('Crear Tarea');
 
             ?>
 

@@ -17,30 +17,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $respuestas[] = $content;
         }
 
-        var_dump($_POST);
-        echo "<hr>";
-        var_dump($preguntas);
-        echo "<hr>";
-        var_dump($respuestas);
-        echo "<hr>";
+        // var_dump($_POST);
+        // echo "<hr>";
+        // var_dump($preguntas);
+        // echo "<hr>";
+        // var_dump($respuestas);
+        // echo "<hr>";
 
         $preguntasJSON = json_encode($preguntas);
         $respuestasJSON = json_encode($respuestas);
 
-        var_dump($preguntasJSON);
-        echo "<hr>";
-        var_dump($respuestasJSON);
-        echo "<hr>";
+        // var_dump($preguntasJSON);
+        // echo "<hr>";
+        // var_dump($respuestasJSON);
+        // echo "<hr>";
 
         $content = implode('/', [$preguntasJSON, $respuestasJSON]);
-        var_dump($content);
-        echo "<hr>";
+        // var_dump($content);
+        // echo "<hr>";
 
-        $preres = explode('/', $content);
-        var_dump($preres);
-        echo "<hr>";
+        // $preres = explode('/', $content);
+        // var_dump($preres);
+        // echo "<hr>";
 
         Task::registerHandover($_SESSION['id'], $_POST['id'], $content);
+
+        header( "refresh:1;url=display_crud.php?header=Tareas" );
+
+        $estructura->head('Entregar Tarea');
+
+        ?>
+
+        <div class="text-center mt-auto">
+        <div class="spinner-border spinner-grow-xl" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        </div>
+
+
+        <?php
+
+        $estructura->paint_footer();
 
     }
     else
