@@ -88,6 +88,21 @@ class User {
         }   
     }
 
+    public static function listGroups ()
+    {
+        $connection = new ConnectorSQL();
+        $conn = $connection->getCon();
+
+        $query = "SELECT distinct group_id from tGroup";
+        $result = mysqli_query($conn, $query);
+
+        if ($rows = $result->fetch_all(MYSQLI_ASSOC))  
+        {
+            return $rows;
+        }
+
+    }
+
     public function display_profile($id)
     {
         $connection = new ConnectorSQL();

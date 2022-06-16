@@ -58,9 +58,16 @@ class Task {
             $this->preguntas[] = $question;
     }
     
-    public function registerTask ($name, $duedate) {
+    public static function registerTask ($name, $duedate, $group, $resourceid, $questions) {
 
-        //Do something
+        $db = new ConnectorSQL;
+        $con = $db->getCon();
+
+        // prepare and bind
+        $stmt = $con->prepare("INSERT INTO tTask (task_group_id, task_name, task_release_date, task_due_date, task_content, task_questions) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssis", $group, $name, $currdate, $duedate, $resourceid, $questions);
+        $currdate = date("Y/m/d");
+        $stmt->execute();
 
     }
     public static function listResources () {
@@ -99,12 +106,25 @@ class Task {
                                 echo "<option value='{$recurso['resource_id']}'>{$recurso['resource_details']}</option>";
                         ?>
                     </select>
+
+                    <h2>Grupo</h2>
+                    <select name="group" id="group" class="form-select" required>
+                        <option value="" selected>Selecciona un grupo</option>
+                        <?php
+                            $recursos = User::listGroups();
+                            foreach ($recursos as $recurso)
+                                echo "<option value='{$recurso['group_id']}'>{$recurso['group_id']}</option>";
+                        ?>
+                    </select>
+                    <hr>
+                    <h2>Título</h2>
+                    <input type="text" name="title" class="form-control" required/><br>
                     <hr>
                     <div class="row justify-content-between">
                         <div class="col-md-5">
                             <label for="date" class="col-md-5 col-form-label">Fecha límite</label>
                             <div class="input-group date" id="datepicker">
-                                <input type="date" name="dueDate" class="form-control" id="date"/>
+                                <input type="date" name="dueDate" class="form-control" id="date" required/>
                                 <span class="input-group-append">
                                     <span class="input-group-text bg-light d-block">
                                         <i class="fa fa-calendar"></i>
