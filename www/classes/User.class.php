@@ -69,14 +69,24 @@ class User {
         $conn->close();
     }
 
+    public static function registerUser ($name, $surname, $mail, $pw, $address, $ccpp, $phone, $details = '-', $role = '-')
+    {
+        $db = new ConnectorSQL;
+        $con = $db->getCon();
+
+        // prepare and bind
+        $stmt = $con->prepare("INSERT INTO tUser (user_name, user_last_name, user_mail, user_pw, user_address, user_post_code, user_phone, user_details, user_role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssiiss", $name, $surname, $mail, $pw, $address, $ccpp, $phone, $details, $role);
+        $stmt->execute();
+    
+
+    }
+
     public static function modifyProfile($datos)
     {
         // print_r($datos);
         $connection = new ConnectorSQL();
         $conn = $connection->getCon();
-
-        // if ($_SESSION['role'] == 'student')
-
 
         foreach($datos as $campo => $valor){
             if ($campo != 'user_id' || !((in_array($_SESSION['role'], ['student', 'teacher'])) && $campo == 'user_role')){
@@ -101,6 +111,65 @@ class User {
             return $rows;
         }
 
+    }
+
+    public static function newUser ()
+    {
+
+        ?>
+        <form action="handin_user.php" method='POST'>
+            <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-3 border-right">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" alt='Relleno' src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"></span><span class="text-black-50"></span><span> </span></div>
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" name='edit' type="submit">Crear Usuario</button></div>
+                        <input type="hidden" name="id" value="">
+                    </div>
+                    <div class="col-md-8 border-right">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Perfil personal</h4>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6"><label class="labels">Nombre</label>
+                                <input type="text" class="form-control" name='nombre' placeholder="Nombre" value="" required></div>
+                                <div class="col-md-6"><label class="labels">Apellidos</label>
+                                <input type="text" class="form-control" name='apellidos' value="" placeholder="Apellidos" required></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Telefono</label>
+                                <input type="text" class="form-control" name='telefono' placeholder="Telefono" value="" required></div>
+                                <div class="col-md-12 mt-3"><label class="labels">Direccion</label>
+                                <input type="text" class="form-control" name='direccion' placeholder="Direccion" value="" required></div>
+                                <div class="col-md-12 mt-3"><label class="labels">CCPP</label>
+                                <input type="text" class="form-control" name='ccpp' placeholder="Codigo Postal" value="" required></div>
+                                <div class="col-md-12 mt-3"><label class="labels">Email</label>
+                                <input type="text" class="form-control" name='email' placeholder="email" value="" required></div>
+                                <div class="col-md-12 mt-3"><label class="labels">Detalles</label>
+                                <input type="text" class="form-control" name='detalles' placeholder="details" value=""></div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-md-6"><label class="labels">Contraseña</label>
+                                <input type="password" class="form-control" name='password' placeholder="contraseña" value="" required></div>
+                                
+                                <div class="col-md-6"><label class="labels">Rol</label>
+                                    <select class="form-control" name='rol' value="" <?=  in_array($_SESSION['role'], ['student', 'teacher']) ? 'disabled' : '' ?>>
+                                    <option value="admin">Administrador</option>
+                                    <option value="student">Estudiante</option>
+                                    <option value="teacher">Profesor</option>
+                                    </select>
+                                </div>
+                            
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+
+            <?php
     }
 
     public function display_profile($id)

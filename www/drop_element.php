@@ -32,10 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <?php
 
 
-            
-
-
             $estructura->paint_footer();
+            $estructura->close_plus_js(['./js/scripts.js']);
 
         }
     }

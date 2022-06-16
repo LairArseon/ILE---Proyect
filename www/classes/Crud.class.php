@@ -146,7 +146,7 @@ class Crud {
 
                 break;
             case 'Estudiantes':
-                if ($rol != 'student')
+                if ($rol != 'student' && $rol != 'teacher')
                     return ('<a href="create_user.php" class="btn btn-secondary"><i class="bi bi-plus-square-dotted"></i><span>Añadir Usuario</span></a>');				
 
                 break;
