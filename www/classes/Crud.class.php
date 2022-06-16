@@ -124,6 +124,21 @@ class Crud {
         return $query;
     }
 
+    protected function butNew ($nombre, $rol)
+    {
+        switch ($nombre) {
+            case 'Tareas':
+                if ($rol != 'student')
+                   return ('<a href="create_task.php" class="btn btn-secondary"><i class="bi bi-plus-square-dotted"></i><span>Añadir Tarea</span></a>');				
+
+                break;
+            
+            default:
+                return '??';
+                break;
+        }
+    }
+
     public function pintar ()
     {
         if (empty($this->table))
@@ -146,7 +161,7 @@ class Crud {
                                     <h2><?= $this->name;?></b></h2>
                                 </div>
                                 <div class="col-sm-7">
-                                    <a href="#" class="btn btn-secondary"><i class="bi bi-plus-square-dotted"></i><span>Add New</span></a>				
+                                    <?php  echo ($this->butNew($this->name, $_SESSION['role']));  ?>				
                                 </div>
                             </div>
                         </div>

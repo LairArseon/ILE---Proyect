@@ -181,33 +181,7 @@ class Task {
                 <!-- Recurso -->
                 <br><br><br>
 
-                <form action="">
-                
-            <?php
-    // Preguntas ________________________________________________________________________
-                $iter = 0;
-                foreach($this->preguntas as $pregunta)
-                {
-            ?>
-                    <div class="row text-center">
-
-                        <div class="col-md form-group text-center mb-4">
-                            <label for="pregunta-<?=$iter?>" class="mb-2    "><?=$pregunta?></label>
-                            <input type="text" class="form-control" id="respuesta-<?=$iter?>" placeholder="">
-                        </div>
-                    </div>
-            <?php
-                }
-                ?>
-                <div class="row justify-content-around">
-                    <button type='button' class='btn btn-secondary col-md-2' onclick="history.back()">Atras</button>
-                    <button type='submit' class='btn btn-primary col-md-2'>Submit</button>
-                </div>
-                </form>
-                </div>
-    
                 <?php
-    // Preguntas ________________________________________________________________________
 
                 break;
             case self::TIPO_A:
@@ -225,33 +199,7 @@ class Task {
                 <!-- Recurso -->
                 <br><br><br>
 
-                <form action="">
-                
             <?php
-    // Preguntas ________________________________________________________________________
-                $iter = 0;
-                foreach($this->preguntas as $pregunta)
-                {
-            ?>
-                    <div class="row text-center mb-4">
-
-                        <div class="col-md form-group text-center">
-                            <label for="pregunta-<?=$iter?>" class="mb-2    "><?=$pregunta?></label>
-                            <input type="text" class="form-control" id="respuesta-<?=$iter?>" placeholder="">
-                        </div>
-                    </div>
-            <?php
-                }
-                ?>
-                <div class="row justify-content-around">
-                    <button type='button' class='btn btn-secondary col-md-2' onclick="history.back()">Atras</button>
-                    <button type='submit' class='btn btn-primary col-md-2'>Submit</button>
-                </div>
-                </form>
-                </div>
-    
-                <?php
-    // Preguntas ________________________________________________________________________
 
                 break;
             case self::TIPO_V:
@@ -271,42 +219,12 @@ class Task {
                     <!-- Recurso -->
                     <br><br><br>
 
-                    <form action="">
-                    
-                <?php
-        // Preguntas ________________________________________________________________________
-                    $iter = 0;
-                    foreach($this->preguntas as $pregunta)
-                    {
-                ?>
-                        <div class="row text-center mb-4">
-
-                            <div class="col-md form-group text-center">
-                                <label for="pregunta-<?=$iter?>" class="mb-2    "><?=$pregunta?></label>
-                                <input type="text" class="form-control" id="respuesta-<?=$iter?>" placeholder="">
-                            </div>
-                        </div>
-                <?php
-                    }
-                    ?>
-                    <div class="row justify-content-around">
-                        <button type='button' class='btn btn-secondary col-md-2' onclick="history.back()">Atras</button>
-                        <button type='submit' class='btn btn-primary col-md-2'>Submit</button>
-                    </div>
-                    </form>
-                    </div>
-        
                     <?php
-        // Preguntas ________________________________________________________________________
-
 
                 break;
             default:
 
-
                 ?>
-                    
-
                     <div class="container text-center">
                     <h1 class="text-center mt-5"> WEB </h1>
                     <!-- Recurso -->
@@ -315,20 +233,28 @@ class Task {
                     <hr>
                     <!-- Recurso -->
                     <br><br><br>
+ 
+                    <?php
 
-                    <form action="">
-                    
-                <?php
+                break;
+
+        }
         // Preguntas ________________________________________________________________________
                     $iter = 0;
+
+                    ?>
+                        <form action="handin_task.php" method='POST'>
+                    <?php
+                
                     foreach($this->preguntas as $pregunta)
                     {
                 ?>
-                        <div class="row text-center mb-4">
-
-                            <div class="col-md form-group text-center">
-                                <label for="pregunta-<?=$iter?>" class="mb-2    "><?=$pregunta?></label>
-                                <input type="text" class="form-control" id="respuesta-<?=$iter?>" placeholder="">
+                        <div class="row text-center">
+    
+                            <div class="col-md form-group text-center mb-4">
+                                <label for="pregunta-<?=$iter?>" class="mb-2"><?=$pregunta?></label>
+                                <input type="hidden" class="form-control" id="pregunta-<?=$iter?>" name="pregunta-<?=$iter?>" value="<?=$pregunta?>">
+                                <input type="text" class="form-control" id="respuesta-<?=$iter?>" name="respuesta-<?=$iter?>">
                             </div>
                         </div>
                 <?php
@@ -340,13 +266,7 @@ class Task {
                     </div>
                     </form>
                     </div>
-        
-                    <?php
-        // Preguntas ________________________________________________________________________
-
-                break;
-
-        }
+            <?php
 
     }
 

@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `tHandover` (
   `handover_task_id`          int NOT NULL,
   `handover_date`             datetime NOT NULL,
   `handover_content`          text NOT NULL,
+  `handover_mark`             int NOT NULL,
   PRIMARY KEY (`handover_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
