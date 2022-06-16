@@ -54,14 +54,19 @@ class Structure {
         Task::creationForm();
     }
 
-    public function profile_card ()
+    public function profile_card ($id = '')
     {
         $name = $_SESSION['user'];
         $role = $_SESSION['role'];
         $mail = $_SESSION['mail'];
+        if (!isset($_GET['id']))
+            $id = $_SESSION['id'];
+        else 
+            $id = $_GET['id'];
+
         $user = new User($name, $role);
 
-        $user->display_profile($mail);
+        $user->display_profile($id);
 
     }
 

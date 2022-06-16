@@ -103,6 +103,7 @@ class Crud {
     private function setQuery ($selection, $query)
     {
         $table = $this->table;
+        $name = $this->name;
         if ($table == 'tGroup' && $_SESSION['role'] == 'student')
         {
 
@@ -111,6 +112,14 @@ class Crud {
         if ($table == 'tTask' && $_SESSION['role'] == 'student')
         {
             return "SELECT $selection from tTask where task_group_id in (SELECT group_id from tGroup where group_member = {$_SESSION['id']})" ;
+        }
+        if ($name == 'Estudiantes')
+        {
+            return "SELECT $selection from tUser where user_role = 'student'" ;
+        }
+        if ($name == 'Profesores')
+        {
+            return "SELECT $selection from tUser where user_role = 'teacher'" ;
         }
         return $query;
     }
@@ -156,7 +165,8 @@ class Crud {
 
                                     <?php
 
-                                    
+                                        // if ($_SESSION['rol'] == 'student')
+
                                         $query = "SELECT $selection from $this->table";
                                         $query = $this->setQuery($selection, $query);
 
@@ -169,7 +179,26 @@ class Crud {
                                             
                                             ?>
                                                 <td class="text-center">
-                                                    <a href="display_task.php?id=<?= $value[self::TABLAS_ID[$this->table]] ?>" class="settings centerico text-center" title="Settings" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
+                                                    <?php
+                                                        switch ($this->table) {
+                                                            case 'tTask':
+                                                                ?>
+                                                                <a href="display_task.php?id=<?= $value[self::TABLAS_ID[$this->table]] ?>" class="settings centerico text-center" title="Settings" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
+                                                                <?php
+                                                                break;
+
+                                                            case 'tUser':
+                                                                ?>
+                                                                <a href="edit_profile.php?id=<?= $value[self::TABLAS_ID[$this->table]] ?>" class="settings centerico text-center" title="Settings" data-toggle="tooltip"><i class="bi bi-pencil-square"></i></a>
+                                                                <?php
+                                                                break;
+                                                            
+                                                            default:
+                                                                # code...
+                                                                break;
+                                                        }
+
+                                                    ?>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="#" class="delete centerico text-center" title="Delete" data-toggle="tooltip"><i class="bi bi-trash"></i></a>

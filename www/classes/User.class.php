@@ -75,8 +75,11 @@ class User {
         $connection = new ConnectorSQL();
         $conn = $connection->getCon();
 
+        // if ($_SESSION['role'] == 'student')
+
+
         foreach($datos as $campo => $valor){
-            if ($campo != 'user_id'){
+            if ($campo != 'user_id' || !((in_array($_SESSION['role'], ['student', 'teacher'])) && $campo == 'user_role')){
                 $query = "UPDATE tUser SET $campo = '$valor' where user_id = '{$datos['user_id']}'";
                 $result = mysqli_query($conn, $query);  
                 if (!$result) 
@@ -85,12 +88,12 @@ class User {
         }   
     }
 
-    public function display_profile($mail)
+    public function display_profile($id)
     {
         $connection = new ConnectorSQL();
         $conn = $connection->getCon();
 
-        $query = "SELECT * from tUser where user_mail = '$mail'";
+        $query = "SELECT * from tUser where user_id = '$id'";
 
         $result = mysqli_query($conn, $query);
 
@@ -103,8 +106,8 @@ class User {
             <div class="container rounded bg-white mt-5 mb-5">
                 <div class="row">
                     <div class="col-md-3 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" alt='Relleno' src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><?= $data['user_name'] ?></span><span class="text-black-50"><?= $mail ?></span><span> </span></div>
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" name='edit' type="submit">Save Profile</button></div>
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" alt='Relleno' src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><?= $data['user_name'] ?></span><span class="text-black-50"><?= $data['user_mail'] ?></span><span> </span></div>
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" name='edit' type="submit">Guardar Cambios</button></div>
                         <input type="hidden" name="id" value="<?= $data['user_id'] ?>">
                     </div>
                     <div class="col-md-8 border-right">
@@ -136,11 +139,11 @@ class User {
                                 <input type="password" class="form-control" name='password' placeholder="contraseña" value="<?= $data['user_pw'] ?>"></div>
                                 
                                 <div class="col-md-6"><label class="labels">Rol</label>
-                                    <select class="form-control" name='rol' value="<?= $data['user_role'] ?>" <?= $_SESSION['role'] == 'student' ? 'disabled' : '' ?>>
-                                    <option value="dev" <?= $_SESSION['role'] == 'dev' ? 'selected' : '' ?>>Desarrollador</option>
-                                    <option value="admin" <?= $_SESSION['role'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
-                                    <option value="student" <?= $_SESSION['role'] == 'student' ? 'selected' : '' ?>>Estudiante</option>
-                                    <option value="teacher" <?= $_SESSION['role'] == 'teacher' ? 'selected' : '' ?>>Profesor</option>
+                                    <select class="form-control" name='rol' value="<?= $data['user_role'] ?>" <?=  in_array($_SESSION['role'], ['student', 'teacher']) ? 'disabled' : '' ?>>
+                                    <option value="dev" <?= $data['user_role'] == 'dev' ? 'selected' : '' ?>>Desarrollador</option>
+                                    <option value="admin" <?= $data['user_role'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
+                                    <option value="student" <?= $data['user_role'] == 'student' ? 'selected' : '' ?>>Estudiante</option>
+                                    <option value="teacher" <?= $data['user_role'] == 'teacher' ? 'selected' : '' ?>>Profesor</option>
                                     </select>
                                 </div>
                             

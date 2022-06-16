@@ -104,7 +104,7 @@ class Task {
                         <div class="col-md-5">
                             <label for="date" class="col-md-5 col-form-label">Fecha límite</label>
                             <div class="input-group date" id="datepicker">
-                                <input type="date" class="form-control" id="date"/>
+                                <input type="date" name="dueDate" class="form-control" id="date"/>
                                 <span class="input-group-append">
                                     <span class="input-group-text bg-light d-block">
                                         <i class="fa fa-calendar"></i>
@@ -118,38 +118,13 @@ class Task {
 
                     <hr>
 
-                    <h2>Preguntas</h2>
+                    <h2>Preguntas</h2><br>
 
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                    <input type="email" id="form2Example1" name="email" class="form-control" />
-                    <label class="form-label" for="form2Example1">Correo electrónico</label>
+                    <div class="form-outline mb-4 questions">
+                        
                     </div>
 
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                    <input type="password" id="form2Example2" name="pass" class="form-control" />
-                    <label class="form-label" for="form2Example2">Contraseña</label>
-                    </div>
-
-                    <!-- 2 column grid layout for inline styling -->
-                    <div class="row mb-4">
-                    <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="remember" id="form2Example31" checked />
-                        <label class="form-check-label" for="form2Example31"> Remember me </label>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <!-- Simple link -->
-                        <a href="./forgot_pass.php">Forgot password?</a>
-                    </div>
-                    </div>
-
-                    
-
+                    <button type="button" class="btn btn-primary col-md-3 add"><i class="bi bi-plus-circle"></i>Añadir pregunta</button>
 
 
                 </div>
