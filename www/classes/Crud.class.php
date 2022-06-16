@@ -132,9 +132,19 @@ class Crud {
                    return ('<a href="create_task.php" class="btn btn-secondary"><i class="bi bi-plus-square-dotted"></i><span>Añadir Tarea</span></a>');				
 
                 break;
+            case 'Estudiantes':
+                if ($rol != 'student')
+                    return ('<a href="create_user.php" class="btn btn-secondary"><i class="bi bi-plus-square-dotted"></i><span>Añadir Usuario</span></a>');				
+
+                break;
+            case 'Profesores':
+                if ($rol != 'student')
+                    return ('<a href="create_user.php" class="btn btn-secondary"><i class="bi bi-plus-square-dotted"></i><span>Añadir Usuario</span></a>');				
+
+                break;
             
             default:
-                return '??';
+                return '';
                 break;
         }
     }
@@ -179,8 +189,6 @@ class Crud {
                             <tbody>
 
                                     <?php
-
-                                        // if ($_SESSION['rol'] == 'student')
 
                                         $query = "SELECT $selection from $this->table";
                                         $query = $this->setQuery($selection, $query);

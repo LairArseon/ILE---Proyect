@@ -70,6 +70,19 @@ class Task {
         $stmt->execute();
 
     }
+
+    public static function registerHandover ($authorID, $taskID, $content)
+    {
+        $db = new ConnectorSQL;
+        $con = $db->getCon();
+
+        // prepare and bind
+        $stmt = $con->prepare("INSERT INTO tHandover (handover_author_id, handover_task_id, handover_date, handover_content) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiss", $authorID, $taskID, $currdate, $content);
+        $currdate = date("Y/m/d");
+        $stmt->execute();
+    }
+
     public static function listResources () {
 
         $connection = new ConnectorSQL();
@@ -258,9 +271,11 @@ class Task {
                             </div>
                         </div>
                 <?php
+                    $iter++;
                     }
                     ?>
                     <div class="row justify-content-around">
+                        <input type="hidden" class="form-control" id="id" name="id" value="<?=$_GET['id']?>">
                         <button type='button' class='btn btn-secondary col-md-2' onclick="history.back()">Atras</button>
                         <button type='submit' class='btn btn-primary col-md-2'>Submit</button>
                     </div>
