@@ -11,6 +11,8 @@ class Sidebar {
     protected const HOS = ['Entregas', 5];
     protected const RESOURCES = ['Recursos', 6];
     protected const PROFS = ['Profesores', 7];
+    protected const NOTIFS = ['Notificaciones', 8];
+
 
     protected $campos;
     protected $rol;
@@ -21,7 +23,7 @@ class Sidebar {
 
         switch ($rol) {
             case 'dev':
-                $this->setCampos(['Perfil', 'Tareas', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos', 'Profesores']);
+                $this->setCampos(['Perfil', 'Tareas', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos', 'Profesores', 'Notificaciones']);
 
                 break;
             case 'teacher':
@@ -29,7 +31,7 @@ class Sidebar {
 
                 break;
             case 'admin':
-                $this->setCampos(['Perfil', 'Tareas', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos', 'Profesores']);
+                $this->setCampos(['Perfil', 'Tareas', 'Grupos', 'Estudiantes', 'Entregas', 'Recursos', 'Profesores', 'Notificaciones']);
 
                 break;
             default:
@@ -43,7 +45,7 @@ class Sidebar {
     {
         foreach ($campos as $campo){
             if (!in_array($campo, 
-            [self::TASKS[0], self::PROFILE[0], self::GROUPS[0], self::STUDENTS[0], self::HOS[0], self::RESOURCES[0], self::PROFS[0]])) 
+            [self::TASKS[0], self::PROFILE[0], self::GROUPS[0], self::STUDENTS[0], self::HOS[0], self::RESOURCES[0], self::PROFS[0], self::NOTIFS[0]])) 
                 return false;
             else {
                 $this->campos[] = $campo;

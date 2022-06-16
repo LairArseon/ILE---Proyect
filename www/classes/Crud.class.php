@@ -95,6 +95,18 @@ class Crud {
 
     }
 
+    public static function dropElement ($tabla, $id) 
+    {
+        $connection = new ConnectorSQL();
+        $conn = $connection->getCon();
+
+        $query = "DELETE FROM $tabla WHERE ".self::TABLAS_ID[$tabla]."='$id';";
+        if ($result = mysqli_query($conn, $query))
+            return true;
+        else
+            return false;
+    }
+
     public static function getNameTable ($name)
     {
         $idtab = array_search($name, self::NOMTABLASCLEAN);
@@ -231,7 +243,13 @@ class Crud {
                                                     ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#" class="delete centerico text-center" title="Delete" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
+                                                    <?php
+                                                        if ($_SESSION['role'] != 'student') {
+                                                    ?>
+                                                        <a href="drop_element.php?tName=<?= $this->table ?>&elId=<?= $value[self::TABLAS_ID[$this->table]] ?>&header=<?=$_GET['header']?>" class="delete centerico text-center" id='delete' title="Delete" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </td>
                                             <?php
                                             echo '</tr>';

@@ -47,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $estructura->paint_footer();
 
+            $estructura->close_plus_js(['./js/scripts.js']);
+
+
 
         }
     }

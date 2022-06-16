@@ -21,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (Task::updateHandover($_POST['id'], $nota))
             header( "refresh:1;url=display_crud.php?header=Entregas" );
         else 
-            header( "refresh:1;url=display_crud.php?header=Entregas" );
+            header( "refresh:1;url=mark_task.php?id=$_POST[id]" );
 
 
         $estructura = new Structure;
 
-        var_dump($_POST);
+        // var_dump($_POST);
 
 
         $estructura->head('Generar Corrección');
@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php
 
         $estructura->paint_footer();
+        $estructura->close_plus_js(['./js/scripts.js']);
 
 
     }

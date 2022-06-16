@@ -44,6 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         header( "refresh:1;url=display_crud.php?header=Tareas" );
 
+        $estructura = new Structure;
+
         $estructura->head('Entregar Tarea');
 
         ?>
@@ -58,6 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php
 
         $estructura->paint_footer();
+        $estructura->close_plus_js(['./js/scripts.js']);
+
 
     }
     else
