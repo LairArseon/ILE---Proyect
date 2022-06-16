@@ -40,9 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // var_dump($preres);
         // echo "<hr>";
 
-        Task::registerHandover($_SESSION['id'], $_POST['id'], $content);
-
+        if (Task::registerHandover($_SESSION['id'], $_POST['id'], $content) == true){
         header( "refresh:1;url=display_crud.php?header=Tareas" );
+        echo '<script>alert(Entrega Realizada);</script>';
+        }
 
         $estructura = new Structure;
 

@@ -155,6 +155,13 @@ class Crud {
                     return ('<a href="create_user.php" class="btn btn-secondary"><i class="bi bi-plus-square-dotted"></i><span>Añadir Usuario</span></a>');				
 
                 break;
+
+            case 'Grupos':
+                if ($rol != 'student')
+                    return ('<a href="create_group.php" class="btn btn-secondary"><i class="bi bi-plus-square-dotted"></i><span>Añadir Grupo</span></a>');				
+
+                break;
+                
             
             default:
                 return '';
@@ -206,7 +213,7 @@ class Crud {
                                         $query = "SELECT $selection from $this->table";
                                         $query = $this->setQuery($selection, $query);
 
-                                        $result = mysqli_query($conn, $query);
+                                        if ($result = mysqli_query($conn, $query))
 
                                         while($value = $result->fetch_array(MYSQLI_ASSOC)){
                                             echo '<tr>';

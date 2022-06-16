@@ -50,11 +50,18 @@ class Structure {
         $sidebar->display();
     }
 
-    public function paint_task_creator () {
+    public function paint_task_creator () 
+    {
         Task::creationForm();
     }
 
-    public function paint_task_supervisor ($id) {
+    public function paint_group_creator () 
+    {
+        User::newGroup();
+    }
+
+    public function paint_task_supervisor ($id) 
+    {
         Task::supervisorForm($id);
     }
 

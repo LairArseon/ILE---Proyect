@@ -67,7 +67,10 @@ class Task {
         $stmt = $con->prepare("INSERT INTO tTask (task_group_id, task_name, task_release_date, task_due_date, task_content, task_questions) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssis", $group, $name, $currdate, $duedate, $resourceid, $questions);
         $currdate = date("Y/m/d");
-        $stmt->execute();
+        if ($stmt->execute())
+            return true;
+        else
+            return false;
 
     }
 
@@ -80,7 +83,10 @@ class Task {
         $stmt = $con->prepare("INSERT INTO tHandover (handover_author_id, handover_task_id, handover_date, handover_content) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("iiss", $authorID, $taskID, $currdate, $content);
         $currdate = date("Y/m/d");
-        $stmt->execute();
+        if ($stmt->execute())
+            return true;
+        else
+            return false;
     }
 
     public static function listResources () {
@@ -233,7 +239,7 @@ class Task {
                         ?>
 
                         <div class="col-md form-group text-left mb-4">
-                            <label for="pregunta-<?=$iter?>" class="mb-2">-- <?= $preresdeco[0][$i]; ?></label>
+                            <label for="pregunta-<?=$i?>" class="mb-2">-- <?= $preresdeco[0][$i]; ?></label>
                             <input type="text" class="form-control" value="<?=$preresdeco[1][$i]?>">
                             <input type="checkbox" class="form-check-input h4" name="valor<?=$i?>">
 

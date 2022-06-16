@@ -82,6 +82,29 @@ class User {
 
     }
 
+    public static function registerGroup ($idGrupo, $idAsig, $idProfe, $idAlumno)
+    {
+        $db = new ConnectorSQL;
+        $con = $db->getCon();
+
+        if ($idGrupo == 0)
+        {
+            $query = "SELECT max(group_id) as maxi from tGroup";
+            $result = mysqli_query($con, $query);
+
+            if ($data = $result->fetch_array(MYSQLI_ASSOC))
+                $idGrupo = $data['maxi'] + 1;
+        }
+
+        // prepare and bind
+        $stmt = $con->prepare("INSERT INTO tGroup (group_id, group_subject_id, group_handle, group_member) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiii", $idGrupo, $idAsig, $idProfe, $idAlumno);
+
+        return $stmt->execute();
+    
+
+    }
+
     public static function modifyProfile($datos)
     {
         // print_r($datos);
@@ -110,6 +133,117 @@ class User {
         {
             return $rows;
         }
+
+    }
+
+    public static function listTeachers ()
+    {
+        $connection = new ConnectorSQL();
+        $conn = $connection->getCon();
+
+        $query = "SELECT * from tUser where user_role = 'teacher'";
+        $result = mysqli_query($conn, $query);
+
+        if ($rows = $result->fetch_all(MYSQLI_ASSOC))  
+        {
+            return $rows;
+        }
+
+    }
+
+    public static function listStudents ()
+    {
+        $connection = new ConnectorSQL();
+        $conn = $connection->getCon();
+
+        $query = "SELECT * from tUser where user_role = 'student'";
+        $result = mysqli_query($conn, $query);
+
+        if ($rows = $result->fetch_all(MYSQLI_ASSOC))  
+        {
+            return $rows;
+        }
+
+    }
+
+    public static function listSubjects ()
+    {
+        $connection = new ConnectorSQL();
+        $conn = $connection->getCon();
+
+        $query = "SELECT * from tSubject";
+        $result = mysqli_query($conn, $query);
+
+        if ($rows = $result->fetch_all(MYSQLI_ASSOC))  
+        {
+            return $rows;
+        }
+
+    }
+
+    public static function newGroup ()
+    {
+        ?>
+
+        <!-- Section: Design Block -->
+        <section class="container-sm text-center text-lg-start login-container">
+        <form action="handin_group.php" method="POST">
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8 mt-4">
+
+                    <h2>Grupo</h2>
+                    <select name="group" id="group" class="form-select" required>
+                        <option value="0">Nuevo</option>
+                        <?php
+                            $recursos = User::listGroups();
+                            foreach ($recursos as $recurso)
+                                echo "<option value='{$recurso['group_id']}'>{$recurso['group_id']}</option>";
+                        ?>
+                    </select>
+                    <hr>
+                    <h2>Asignatura</h2>
+                    <select name="subject" id="subject" class="form-select" required>
+                        <option value="" selected>Selecciona una</option>
+                        <?php
+                            $asignaturas = User::listSubjects();
+                            foreach ($asignaturas as $asignatura)
+                                echo "<option value='{$asignatura['subject_id']}'>{$asignatura['subject_name']}</option>";
+                        ?>
+                    </select>
+                    <hr>
+                    <h2>Profesor</h2>
+                    <select name="handle" id="handle" class="form-select" required>
+                        <option value="" selected>Selecciona uno</option>
+                        <?php
+                            $profesores = User::listTeachers();
+                            foreach ($profesores as $profesor)
+                                echo "<option value='{$profesor['user_id']}'>{$profesor['user_name']}</option>";
+                        ?>
+                    </select>
+                    <hr>
+                    <h2>Alumno</h2>
+                    <select name="student" id="student" class="form-select" required>
+                        <option value="" selected>Selecciona uno</option>
+                        <?php
+                            $alumnos = User::listStudents();
+                            foreach ($alumnos as $alumno)
+                                echo "<option value='{$alumno['user_id']}'>{$alumno['user_name']}</option>";
+                        ?>
+                    </select>
+                    <hr>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary col-md-3">Crear Grupo</button>
+
+
+                </div>
+            </div>
+        </form>
+        </section>
+        <!-- Section: Design Block -->
+
+        <?php
 
     }
 

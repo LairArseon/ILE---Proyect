@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `tHandover` (
   `handover_task_id`          int NOT NULL,
   `handover_date`             datetime NOT NULL,
   `handover_content`          text NOT NULL,
-  `handover_mark`             int,
+  `handover_mark`             float,
   PRIMARY KEY (`handover_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -115,3 +115,7 @@ INSERT INTO `tTask`
 VALUES
 (NULL, '1', 'Probar', '2022-06-07 18:38:03', '2022-06-23 20:38:04', '1', '[\"Eso\", \"Aquello\"]'),
 (NULL, '2', 'Probar Again', '2022-06-07 18:38:03', '2022-06-23 20:38:04', '1', '[\"Eso\", \"Aquello\"]');
+
+INSERT INTO `tSubject` (`subject_id`, `subject_name`, `subject_details`) 
+VALUES 
+(NULL, 'Fisica', 'Fisica aplicada a la videa cotidiana');
