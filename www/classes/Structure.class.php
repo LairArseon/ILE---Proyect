@@ -50,6 +50,10 @@ class Structure {
         $sidebar->display();
     }
 
+    public function paint_task_creator () {
+        Task::creationForm();
+    }
+
     public function profile_card ()
     {
         $name = $_SESSION['user'];

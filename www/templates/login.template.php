@@ -14,7 +14,7 @@
           <form action="login_try.php" method="POST">
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="form2Example1" name="email" class="form-control" />
+              <input type="email" id="form2Example1" name="email" class="form-control" value=<?= isset($_COOKIE['email']) ? "$_COOKIE[email]" : "";?>>
               <label class="form-label" for="form2Example1">Correo electrónico</label>
             </div>
 
@@ -29,19 +29,19 @@
               <div class="col d-flex justify-content-center">
                 <!-- Checkbox -->
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" name="remember" id="form2Example31" checked />
-                  <label class="form-check-label" for="form2Example31"> Remember me </label>
+                  <input class="form-check-input" type="checkbox" name="remember" id="remember" />
+                  <label class="form-check-label" for="remember"> Recordarme </label>
                 </div>
               </div>
 
               <div class="col">
                 <!-- Simple link -->
-                <a href="./forgot_pass.php">Forgot password?</a>
+                <a href="./forgot_pass.php">¿Olvidaste la contraseña?</a>
               </div>
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+            <button type="submit" class="btn btn-primary btn-block mb-4">Entrar</button>
 
           </form>
 

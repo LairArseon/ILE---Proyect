@@ -20,6 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['mail'] = $mail;
             $_SESSION['login'] = true;
 
+            if (isset($_POST['remember']))
+                {
+                    setcookie('email', $mail, time() + (10 * 365 * 24 * 60 * 60), "/");
+                }
+            else 
+                {
+                    if (isset($_COOKIE['email']))
+                    {
+                        unset($_COOKIE['email']); 
+                        setcookie('email', $mail, time() - (3600), "/");    
+                    }
+                                    
+                }
+                
+                
+
             header('location: index.php');
         }
         else 

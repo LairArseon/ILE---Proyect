@@ -106,7 +106,8 @@ VALUES
 INSERT INTO `tResource` 
 (`resource_id`, `resource_type`, `resource_url`, `resource_details`) 
 VALUES 
-(NULL, 'video', 'https://www.youtube.com/embed/1IyU3VXDAIk', 'Video de Cancion');
+(NULL, 'video', 'https://www.youtube.com/embed/1IyU3VXDAIk', 'Video de Cancion'),
+(NULL, 'audio', 'https://www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav', 'Cantina');
 
 INSERT INTO `tTask` 
 (`task_id`, `task_group_id`, `task_name`, `task_release_date`, `task_due_date`, `task_content`, `task_questions`) 
